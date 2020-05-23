@@ -5,7 +5,9 @@ var app = express();
 
 var Usuario = require('../models/usuario');
 
+// =============================
 // Obtener todos los usuarios
+// ================================
 app.get('/', (req, res, next) => {
 
     Usuario.find({}, 'nombre email img role')
