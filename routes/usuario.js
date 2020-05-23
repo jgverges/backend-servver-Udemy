@@ -52,12 +52,26 @@ app.put('/:id',(req,res) => {
 
         }
         usuario.nombre=body.nombre;
+        usuario.role=body.role;
+        usuario.email=body.email;
 
-    });
+        usuario.save((err,usuarioGuardado) => {
+            if (err) {
+                return res.status(400).json({
+                    ok: false,
+                    mensaje: 'Error al -actualizar- usuario',
+                    errors: err
+                });
+            }
+            usuarioGuardado.password = ";)";
 
-    res.status(201).json({
-        ok: true,
-        id: id
+            res.status(200).json({
+                ok: true,
+                usuario: usuarioGuardado
+            });
+        
+        });
+
     });
 
 
