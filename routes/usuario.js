@@ -39,7 +39,7 @@ app.get('/', (req, res, next) => {
 // ===============================================================
 // Actualizar usuario 
 // ===============================================================
-app.put('/:id',(req,res) => {
+app.put('/:id', mdAutenticacion.verificaToken, (req,res) => {
 
     var id = req.params.id;
     var body =req.body;
@@ -88,6 +88,11 @@ app.put('/:id',(req,res) => {
 
 });  
 
+
+
+
+
+
 // ===============================================================
 // Crear nuevo usuario (a partir de la  librería: body parser node)
 // ===============================================================
@@ -124,7 +129,7 @@ app.post('/', mdAutenticacion.verificaToken,(req,res) =>{
 // ========================================
 // Borrar un usuario por el id
 // ====================================
-app.delete('/:id',(req, res) => {
+app.delete('/:id', mdAutenticacion.verificaToken, (req, res) => {
 
         var id = req.params.id;
 
