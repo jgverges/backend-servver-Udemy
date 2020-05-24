@@ -29,7 +29,7 @@ var loginRoutes = require('./routes/login');
 var hospitalRoutes = require('./routes/hospital');
 var medicoRoutes = require('./routes/medico');
 var busquedaRoutes = require('./routes/busqueda');
-//var coleccionRoutes = require('./routes/coleccion');
+var uploadRoutes = require('./routes/upload');
 
 
 
@@ -39,7 +39,7 @@ app.use('/hospital', hospitalRoutes);
 app.use('/login', loginRoutes);
 app.use('/medico', medicoRoutes);
 app.use('/busqueda', busquedaRoutes);
-//app.use('/coleccion', coleccionRoutes);
+app.use('/upload', uploadRoutes);
 app.use('/', appRoutes);
 
 
