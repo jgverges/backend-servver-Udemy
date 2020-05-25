@@ -34,16 +34,19 @@ var hospitalRoutes = require('./routes/hospital');
 var medicoRoutes = require('./routes/medico');
 var busquedaRoutes = require('./routes/busqueda');
 var uploadRoutes = require('./routes/upload');
+var imagenesRoutes = require('./routes/imagenes');
 
 
 
 // Rutas
 app.use('/usuario', usuarioRoutes);
 app.use('/hospital', hospitalRoutes);
-app.use('/login', loginRoutes);
+app.use('/login', loginRoutes); 
 app.use('/medico', medicoRoutes);
 app.use('/busqueda', busquedaRoutes);
 app.use('/upload', uploadRoutes);
+app.use('/img', imagenesRoutes);
+
 app.use('/', appRoutes);
 
 
