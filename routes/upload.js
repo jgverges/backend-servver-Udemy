@@ -8,11 +8,24 @@ var app = express();
 app.use(fileUpload());
 
 
-app.put('/', (req, res, next) => {
+app.put('/:tipo/:id', (req, res, next) => {
+
+    var tipo = req.params.tipo;
+    var id = req.params.id;
+
+    // Tipos de colección
+    var tiposValidos=['hospitales','medicos','usuarios'];
+    if ( tiposValidos.indexOf( tipo)<0 ) {
+        return res.status(400).json({
+            ok: false,
+            mensaje: 'Tipo de colección no es válida',
+            errors: { message:'Tipo de colección no es válida'}
+        });
+    }
 
 
     if( !req.files){
-            return res.status(500).json({
+            return res.status(400).json({
                 ok: false,
                 mensaje: 'No seleccionó nada',
                 errors: { message:'Debe seleccionar una imagen'}
@@ -35,12 +48,36 @@ app.put('/', (req, res, next) => {
         });
 
     }
+    // Nombre de archivo personalizado
+    // formato: id-random.ext --> 123123123-458.png
+    var nombreArchivo=`${id}-${new Date().getMilliseconds()}.${extensionArchivo} `;
 
-    res.status(200).json({
-        ok: true,
-        mensaje: 'Peticion realizada correctamente',
-        extensionArchivo: extensionArchivo
+
+    // Mover el archivo del temporal a un path
+    var path = `./uploads/${tipo}/${nombreArchivo} `;
+
+    archivo.mv(path, err => {
+
+        if (err){
+            return res.status(500).json({
+                ok: false,
+                mensaje: 'Error al mover archivo',
+                errors: err
+            });   
+        }
+
+
+
+        res.status(200).json({
+            ok: true,
+            mensaje: 'Archivo movido',
+            extensionArchivo: extensionArchivo
+        });
+
     });
+
+
+
 
 });
 
