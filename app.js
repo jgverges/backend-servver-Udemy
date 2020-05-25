@@ -21,7 +21,11 @@ mongoose.connection.openUri('mongodb://localhost:27017/hospitalDB',(err, res) =>
 
 });
 
-
+// Server index config
+//      var serveIndex = require('serve-index');
+//      app.use(express.static(__dirname + '/'))
+//      app.use('/uploads', serveIndex(__dirname + '/uploads'));
+  
 // Importar rutas
 var appRoutes = require('./routes/app');
 var usuarioRoutes = require('./routes/usuario');
